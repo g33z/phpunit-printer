@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Kujira\PHPUnit;
+namespace g33z\PHPUnit;
 
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestFailure;
@@ -17,12 +17,13 @@ use PHPUnit\TextUI\ResultPrinter;
 use PHPUnit\Util\Filter;
 
 /**
- * Kujira Result printer
+ * PHPUnit Result printer
  *
  * It overrides the defaults printer, displaying cross red mark
  * for the failing tests and a green check mark for the passing ones.
  *
  * @author Cyril Barragan <cyril.barragan@gmail.com>
+ * @author Maximilian Glück <mg@wefra.life>
  * @package kujira-phpunit-printer
  */
 class Printer extends ResultPrinter

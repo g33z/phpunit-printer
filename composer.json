@@ -1,9 +1,9 @@
 {
     "name": "g33z/phpunit-printer",
     "type": "library",
-    "description": "A PhpUnit result printer",
+    "description": "A PHPUnit result printer",
     "keywords": ["phpunit","result", "printer", "unit", "test"],
-    "homepage": "https://github.com/cyrilbarragan/kujira-phpunit-printer",
+    "homepage": "https://github.com/g33z/phpunit-printer",
     "license": "MIT",
     "authors": [
         {

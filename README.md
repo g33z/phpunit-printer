@@ -1,5 +1,5 @@
-kujira-phpunit-printer
-======================
+PHPUnit-Printer
+===
 
 A PhpUnit result printer.
 This is a fork of `kujira/phpunit-printer` modified to be used with the symfony framework.
@@ -39,4 +39,4 @@ This package has been modified to work when used relatively and in dev-requireme
 
 ## License
 
-The Kujira result printer for PHPUnit is licensed under the [MIT license](LICENSE).
+The PHPUnit-Printer is licensed under the [MIT license](LICENSE).

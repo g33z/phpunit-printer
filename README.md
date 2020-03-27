@@ -20,7 +20,7 @@ This package has been modified to work when used relatively and in dev-requireme
 
 `composer require --dev "g33z/phpunit-printer"`
 
----
+## Usage
 
 * Add to your phpunit.xml
 
@@ -28,14 +28,16 @@ This package has been modified to work when used relatively and in dev-requireme
    <phpunit
         bootstrap="config/bootstrap.php"
         colors="true"
-        printerFile="vendor/kujira/phpunit-printer/src/Printer.php"
-        printerClass="Kujira\PHPUnit\Printer"
+        printerFile="vendor/g33z/phpunit-printer/src/Printer.php"
+        printerClass="g33z\PHPUnit\Printer"
    >
 ```
 
 * Configure your php.ini default_charset to UTF-8
 
 * Configure your terminal to display UTF-8 charset and use a UTF-8 compatible font like DejaVu Sans Mono
+
+* Then run `bin/phpunit` as you did before
 
 ## License
 

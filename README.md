@@ -1,11 +1,14 @@
 kujira-phpunit-printer
 ======================
 
-A PhpUnit result printer
+A PhpUnit result printer.
+This is a fork of `kujira/phpunit-printer` modified to be used with the symfony framework.
 
 ## Requirements
 
- * PHP 5.3.0 or later.
+ * A symfony installation, tested with 4.2.28
+ * PHP 5.3.0 or later
+ * the symfony/phpunit-bridge `composer require --dev symfony/phpunit-bridge`
 
 ## How it looks
 
@@ -13,22 +16,25 @@ A PhpUnit result printer
 
 ## Installation
 
-composer global require "kujira/phpunit-printer:1.0.1"
+This package has been modified to work when used relatively and in dev-requirements like 
 
-## Configuration
+`composer require --dev "g33z/phpunit-printer"`
+
+---
 
 * Add to your phpunit.xml
 
 ```xml
-    <phpunit
-        bootstrap="bootstrap.php"
+   <phpunit
+        bootstrap="config/bootstrap.php"
         colors="true"
-        printerFile="/home/biotope/.composer/vendor/kujira/phpunit-printer/src/Printer.php"
+        printerFile="vendor/kujira/phpunit-printer/src/Printer.php"
         printerClass="Kujira\PHPUnit\Printer"
-    >
+   >
 ```
 
 * Configure your php.ini default_charset to UTF-8
+
 * Configure your terminal to display UTF-8 charset and use a UTF-8 compatible font like DejaVu Sans Mono
 
 ## License

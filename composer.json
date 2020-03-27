@@ -1,5 +1,5 @@
 {
-    "name": "kujira/phpunit-printer",
+    "name": "g33z/phpunit-printer",
     "type": "library",
     "description": "A PhpUnit result printer",
     "keywords": ["phpunit","result", "printer", "unit", "test"],
@@ -10,6 +10,12 @@
             "name": "Cyril Barragan",
             "email": "cyril.barragan@gmail.com",
             "homepage": "http://www.cyril-barragan.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Maximilian Glück",
+            "email": "mg@wefra.life",
+            "homepage": "https://wiki.g33zdev.net",
             "role": "Developer"
         }
     ],

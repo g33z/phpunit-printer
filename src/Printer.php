@@ -11,6 +11,11 @@
 
 namespace Kujira\PHPUnit;
 
+use PHPUnit\Framework\Test;
+use PHPUnit\Framework\TestFailure;
+use PHPUnit\TextUI\ResultPrinter;
+use PHPUnit\Util\Filter;
+
 /**
  * Kujira Result printer
  *
@@ -20,16 +25,25 @@ namespace Kujira\PHPUnit;
  * @author Cyril Barragan <cyril.barragan@gmail.com>
  * @package kujira-phpunit-printer
  */
-class Printer extends \PHPUnit_TextUI_ResultPrinter
+class Printer extends ResultPrinter
 {
     protected $className;
     protected $previousClassName;
 
-    public function __construct($out = NULL, $verbose = FALSE, $colors = TRUE, $debug = FALSE)
+    public function __construct($out = null, $verbose = false, $colors = true, $debug = false)
     {
         ob_start();
         $this->autoFlush = true;
         parent::__construct($out, $verbose, $colors, $debug);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function startTest(Test $test)
+    {
+        $this->className = get_class($test);
+        parent::startTest($test);
     }
 
     /**
@@ -43,34 +57,25 @@ class Printer extends \PHPUnit_TextUI_ResultPrinter
 
         if ($this->previousClassName !== $this->className) {
             echo "\n\t";
-            echo "\033[01;36m".$this->className."\033[0m".'  ';
+            echo "\033[01;36m" . $this->className . "\033[0m" . '  ';
             $this->previousClassName = $this->className;
         }
 
         switch ($progress) {
             // success
             case '.':
-                $output = "\033[01;32m".mb_convert_encoding("\x27\x14", 'UTF-8', 'UTF-16BE')."\033[0m";
+                $output = "\033[01;32m" . mb_convert_encoding("\x27\x14", 'UTF-8', 'UTF-16BE') . "\033[0m";
                 break;
             // failed
             case 'F':
             case "\033[41;37mF\033[0m":
-                $output = "\033[01;31m".mb_convert_encoding("\x27\x16", 'UTF-8', 'UTF-16BE')."\033[0m";
+                $output = "\033[01;31m" . mb_convert_encoding("\x27\x16", 'UTF-8', 'UTF-16BE') . "\033[0m";
                 break;
             default:
                 $output = $progress;
         }
 
         echo "$output";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function startTest(\PHPUnit_Framework_Test $test)
-    {
-        $this->className = get_class($test);
-        parent::startTest($test);
     }
 
     /**
@@ -94,12 +99,12 @@ class Printer extends \PHPUnit_TextUI_ResultPrinter
     /**
      * {@inheritdoc}
      */
-    protected function printDefectTrace(\PHPUnit_Framework_TestFailure $defect)
+    protected function printDefectTrace(TestFailure $defect)
     {
         $this->write($this->formatExceptionMsg($defect->getExceptionAsString()));
 
         $trace = \PHPUnit_Util_Filter::getFilteredStacktrace(
-          $defect->thrownException()
+            $defect->thrownException()
         );
 
         if (!empty($trace)) {
@@ -109,13 +114,13 @@ class Printer extends \PHPUnit_TextUI_ResultPrinter
         $e = $defect->thrownException()->getPrevious();
 
         while ($e) {
-          $this->write(
-            "\nCaused by\n" .
-            \PHPUnit_Framework_TestFailure::exceptionToString($e). "\n" .
-            \PHPUnit_Util_Filter::getFilteredStacktrace($e)
-          );
+            $this->write(
+                "\nCaused by\n" .
+                TestFailure::exceptionToString($e) . "\n" .
+                Filter::getFilteredStacktrace($e)
+            );
 
-          $e = $e->getPrevious();
+            $e = $e->getPrevious();
         }
     }
 

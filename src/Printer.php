@@ -103,7 +103,7 @@ class Printer extends ResultPrinter
     {
         $this->write($this->formatExceptionMsg($defect->getExceptionAsString()));
 
-        $trace = \PHPUnit_Util_Filter::getFilteredStacktrace(
+        $trace = Filter::getFilteredStacktrace(
             $defect->thrownException()
         );
 
